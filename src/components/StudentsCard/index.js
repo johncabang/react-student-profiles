@@ -53,7 +53,7 @@ const StudentsCard = () => {
           </Wrapper>
         )
       })}
-      {console.log(studentsList)}
+      {/* {console.log(studentsList)} */}
     </Container>
   )
 }

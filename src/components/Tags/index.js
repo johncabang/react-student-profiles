@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 
 import { StudentContext } from '../../hooks/StudentContext'
 
 const Tags = ({ index, tags }) => {
-  const { setTags, addTags, inputTag, setInputTag } = useContext(StudentContext)
+  const { setTags, addTags } = useContext(StudentContext)
+  const [inputTag, setInputTag] = useState('')
 
   const onKeyDown = (e) => {
     const { key } = e
@@ -21,8 +22,8 @@ const Tags = ({ index, tags }) => {
     <>
       {tags.length > 0 && (
         <TagsWrapper>
-          {tags.map((tag, idx) => (
-            <Tag key={idx}>{tag}</Tag>
+          {tags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
           ))}
         </TagsWrapper>
       )}

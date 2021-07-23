@@ -8,7 +8,7 @@ const StudentProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchTags, setSearchTags] = useState('')
   const [tags, setTags] = useState([])
-  const [inputTag, setInputTag] = useState('')
+  // const [inputTag, setInputTag] = useState('')
   const [showGrades, setShowGrades] = useState(false)
 
   // Expand toggle to show grades
@@ -22,9 +22,9 @@ const StudentProvider = ({ children }) => {
 
   // Search filter by first & last name
 
-  const searchName = (rows) => {
-    return rows.filter(({ firstName, lastName }) =>
-      [firstName, lastName].some(
+  const searchName = (arr) => {
+    return arr.filter(({ firstName, lastName, tags }) =>
+      [firstName, lastName, tags].some(
         (name) =>
           name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
       ),
@@ -69,8 +69,8 @@ const StudentProvider = ({ children }) => {
     setSearchTags,
     tags,
     setTags,
-    inputTag,
-    setInputTag,
+    // inputTag,
+    // setInputTag,
     showGrades,
     setShowGrades,
     expandToggle,
