@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
+import { StudentContext } from "../../hooks/StudentContext";
+
 const StudentsCard = ({ studentsList }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchTags, setSearchTags] = useState("");
-
-  const [tags, setTags] = useState([]);
-  const [inputTag, setInputTag] = useState("");
-  const [showGrades, setShowGrades] = useState(false);
-
-  const expandToggle = () => {
-    setShowGrades(!showGrades);
-  };
-
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInputTag = inputTag.trim();
-
-    if (key === "Enter") {
-      e.preventDefault();
-      setTags((prevState) => [...prevState, trimmedInputTag]);
-      setInputTag("");
-    }
-  };
+  const {
+    searchTerm,
+    setSearchTerm,
+    searchTags,
+    setSearchTags,
+    tags,
+    // setTags,
+    inputTag,
+    setInputTag,
+    showGrades,
+    // setShowGrades,
+    expandToggle,
+    onKeyDown,
+  } = useContext(StudentContext);
 
   function search(rows) {
     return rows.filter(({ firstName, lastName }) =>

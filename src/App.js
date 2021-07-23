@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-
-import axios from "axios";
 
 import StudentsCard from "./components/StudentsCard";
 
@@ -9,19 +7,6 @@ import { StudentContext } from "./hooks/StudentContext";
 
 function App() {
   const { studentsList } = useContext(StudentContext);
-  // const url = "https://api.hatchways.io/assessment/students";
-
-  // const [studentsList, setStudentsList] = useState([]);
-
-  // useEffect(() => {
-  //   axios(url)
-  //     .then((response) => {
-  //       setStudentsList(response.data.students);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   // console.log(studentsList);
 
