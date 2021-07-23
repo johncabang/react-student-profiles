@@ -1,18 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import StudentsCard from "./components/StudentsCard";
 
-import { StudentContext } from "./hooks/StudentContext";
-
 function App() {
-  const { studentsList } = useContext(StudentContext);
-
-  // console.log(studentsList);
-
   return (
     <Container>
-      <StudentsCard studentsList={studentsList} />
+      <StudentsCard />
     </Container>
   );
 }

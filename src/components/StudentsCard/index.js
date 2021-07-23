@@ -3,13 +3,10 @@ import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 import { StudentContext } from "../../hooks/StudentContext";
+import Header from "../Header";
 
-const StudentsCard = ({ studentsList }) => {
+const StudentsCard = () => {
   const {
-    searchTerm,
-    setSearchTerm,
-    searchTags,
-    setSearchTags,
     tags,
     // setTags,
     inputTag,
@@ -19,28 +16,18 @@ const StudentsCard = ({ studentsList }) => {
     expandToggle,
     onKeyDown,
     searchName,
+    studentsList,
   } = useContext(StudentContext);
 
   return (
     <Container>
-      <SearchInput
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <SearchTags
-        type="text"
-        placeholder="Search by tag"
-        value={searchTags}
-        onChange={(e) => setSearchTags(e.target.value)}
-      />
+      <Header />
       {searchName(studentsList).map((student) => {
         return (
           <StudentWrapper key={student.id}>
             <StudentImage src={student.pic} alt="student pic" />
             <StudentDetails>
-              <Header>
+              <StyledTitle>
                 <h1>
                   {student.firstName} {student.lastName}
                 </h1>
@@ -48,7 +35,7 @@ const StudentsCard = ({ studentsList }) => {
                 <ExpandButton onClick={expandToggle} showGrades={showGrades}>
                   {!showGrades ? <FaPlus /> : <FaMinus />}
                 </ExpandButton>
-              </Header>
+              </StyledTitle>
               <Details>
                 <p>Email: {student.email}</p>
                 <p>Company: {student.company}</p>
@@ -103,25 +90,7 @@ const Container = styled.div`
   overflow-y: auto;
 `;
 
-const SearchInput = styled.input`
-  border: none;
-  outline: none;
-  margin: 1rem 1rem 0rem 1rem;
-  font-size: 1.2rem;
-  padding: 1rem 1rem 1rem 0;
-  border-bottom: #b7b7b7 solid 1px;
-`;
-
-const SearchTags = styled.input`
-  border: none;
-  outline: none;
-  margin: 1rem 1rem 2rem 1rem;
-  font-size: 1.2rem;
-  padding: 1rem 1rem 1rem 0;
-  border-bottom: #b7b7b7 solid 1px;
-`;
-
-const Header = styled.div`
+const StyledTitle = styled.div`
   display: flex;
   justify-content: space-between;
 `;
