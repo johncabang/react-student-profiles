@@ -31,6 +31,8 @@ const StudentProvider = ({ children }) => {
     )
   }
 
+  // Search filter by tags - TODOS
+
   // Add tags
 
   const addTags = (str, index) => {
@@ -53,15 +55,12 @@ const StudentProvider = ({ children }) => {
           addTags.tags = []
           newStudentList.push(addTags)
         })
-        // console.log(newStudentList)
         setStudentsList(newStudentList)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
-
-  // console.log(studentsList);
 
   const value = {
     searchTerm,

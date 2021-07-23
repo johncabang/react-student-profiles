@@ -47,7 +47,7 @@ const StudentsCard = () => {
                     ))}
                   </GradesWrapper>
                 )}
-                <Tags index={index} />
+                <Tags index={index} tags={student.tags} />
               </Body>
             </Card>
           </Wrapper>
@@ -111,33 +111,10 @@ const Card = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: left;
   margin: 0;
   padding: 1rem 1.5rem 0rem 1.5rem;
 `
-
-// const TagInput = styled.input`
-//   border: none;
-//   outline: none;
-//   font-size: 1rem;
-//   border-bottom: #b7b7b7 solid 1px;
-//   margin-top: 0.5rem;
-//   padding: 0.5rem 0.5rem 0.5rem 0rem;
-//   width: 40%;
-// `;
-
-// const TagsWrapper = styled.div`
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin: 1rem 0rem;
-// `;
-
-// const Tag = styled.div`
-//   background-color: lightgray;
-//   border-radius: 5px;
-//   border: none;
-//   padding: 0.5rem 0.8rem;
-//   margin: 0.2rem 0.8rem 0rem 0rem;
-// `;
 
 export default StudentsCard

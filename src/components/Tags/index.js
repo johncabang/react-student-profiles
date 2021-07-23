@@ -3,10 +3,8 @@ import styled from 'styled-components'
 
 import { StudentContext } from '../../hooks/StudentContext'
 
-const Tags = ({ index }) => {
-  const { tags, setTags, addTags, inputTag, setInputTag } = useContext(
-    StudentContext,
-  )
+const Tags = ({ index, tags }) => {
+  const { setTags, addTags, inputTag, setInputTag } = useContext(StudentContext)
 
   const onKeyDown = (e) => {
     const { key } = e
@@ -23,8 +21,8 @@ const Tags = ({ index }) => {
     <>
       {tags.length > 0 && (
         <TagsWrapper>
-          {tags.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
+          {tags.map((tag, idx) => (
+            <Tag key={idx}>{tag}</Tag>
           ))}
         </TagsWrapper>
       )}
