@@ -6,6 +6,7 @@ import { StudentContext } from "../../hooks/StudentContext";
 const Header = () => {
   const { searchTerm, setSearchTerm, searchTags, setSearchTags } =
     useContext(StudentContext);
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <SearchInput

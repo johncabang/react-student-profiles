@@ -24,19 +24,19 @@ const StudentsCard = () => {
       <Header />
       {searchName(studentsList).map((student) => {
         return (
-          <StudentWrapper key={student.id}>
+          <StudentCardWrapper key={student.id}>
             <StudentImage src={student.pic} alt="student pic" />
-            <StudentDetails>
-              <StyledTitle>
+            <StudentCard>
+              <StudentHeader>
                 <h1>
                   {student.firstName} {student.lastName}
                 </h1>
                 {/* {console.log(student.id)} */}
-                <ExpandButton onClick={expandToggle} showGrades={showGrades}>
+                <ExpandButton onClick={expandToggle}>
                   {!showGrades ? <FaPlus /> : <FaMinus />}
                 </ExpandButton>
-              </StyledTitle>
-              <Details>
+              </StudentHeader>
+              <StudentBody>
                 <p>Email: {student.email}</p>
                 <p>Company: {student.company}</p>
                 <p>Skill: {student.skill}</p>
@@ -58,11 +58,13 @@ const StudentsCard = () => {
                     ))}
                   </GradesWrapper>
                 )}
-                <TagsWrapper>
-                  {tags.map((tag, index) => (
-                    <Tag key={index}>{tag}</Tag>
-                  ))}
-                </TagsWrapper>
+                {tags.length > 0 && (
+                  <TagsWrapper>
+                    {tags.map((tag, index) => (
+                      <Tag key={index}>{tag}</Tag>
+                    ))}
+                  </TagsWrapper>
+                )}
                 <TagInput
                   type="text"
                   placeholder="Add a tag"
@@ -70,9 +72,9 @@ const StudentsCard = () => {
                   onKeyDown={onKeyDown}
                   onChange={(e) => setInputTag(e.target.value)}
                 />
-              </Details>
-            </StudentDetails>
-          </StudentWrapper>
+              </StudentBody>
+            </StudentCard>
+          </StudentCardWrapper>
         );
       })}
     </Container>
@@ -90,7 +92,7 @@ const Container = styled.div`
   overflow-y: auto;
 `;
 
-const StyledTitle = styled.div`
+const StudentHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -109,7 +111,7 @@ const GradesWrapper = styled.div`
   flex-direction: column;
 `;
 
-const StudentWrapper = styled.div`
+const StudentCardWrapper = styled.div`
   display: flex;
   border-bottom: #b7b7b7 solid 1px;
   padding: 1.5rem;
@@ -122,14 +124,14 @@ const StudentImage = styled.img`
   border: #b7b7b7 solid 1px;
 `;
 
-const StudentDetails = styled.div`
+const StudentCard = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
   width: 100%;
 `;
 
-const Details = styled.div`
+const StudentBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -142,7 +144,7 @@ const TagInput = styled.input`
   outline: none;
   font-size: 1rem;
   border-bottom: #b7b7b7 solid 1px;
-  /* margin-top: 2rem; */
+  margin-top: 0.5rem;
   padding: 0.5rem 0.5rem 0.5rem 0rem;
   width: 40%;
 `;
@@ -158,7 +160,7 @@ const Tag = styled.div`
   border-radius: 5px;
   border: none;
   padding: 0.5rem 0.8rem;
-  margin: 0.2rem 0.8rem 0.2rem 0;
+  margin: 0.2rem 0.8rem 0rem 0rem;
 `;
 
 export default StudentsCard;

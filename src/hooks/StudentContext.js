@@ -4,12 +4,14 @@ import axios from "axios";
 const StudentContext = createContext();
 
 const StudentProvider = ({ children }) => {
+  const [studentsList, setStudentsList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTags, setSearchTags] = useState("");
-
   const [tags, setTags] = useState([]);
   const [inputTag, setInputTag] = useState("");
   const [showGrades, setShowGrades] = useState(false);
+
+  // Expand toggle to show grades
 
   const expandToggle = () => {
     setShowGrades(!showGrades);
@@ -26,6 +28,8 @@ const StudentProvider = ({ children }) => {
     }
   };
 
+  // Search filter by first & last name
+
   const searchName = (rows) => {
     return rows.filter(({ firstName, lastName }) =>
       [firstName, lastName].some(
@@ -35,9 +39,9 @@ const StudentProvider = ({ children }) => {
     );
   };
 
-  const url = "https://api.hatchways.io/assessment/students";
+  // API call
 
-  const [studentsList, setStudentsList] = useState([]);
+  const url = "https://api.hatchways.io/assessment/students";
 
   useEffect(() => {
     axios(url)
