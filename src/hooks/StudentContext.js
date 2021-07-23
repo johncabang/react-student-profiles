@@ -13,19 +13,16 @@ const StudentProvider = ({ children }) => {
 
   // Expand toggle to show grades
 
-  const expandToggle = () => {
-    setShowGrades(!showGrades);
-  };
+  // const expandToggle = () => {
+  //   setShowGrades(!showGrades);
+  // };
 
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInputTag = inputTag.trim();
-
-    if (key === "Enter") {
-      e.preventDefault();
-      setTags((prevState) => [...prevState, trimmedInputTag]);
-      setInputTag("");
+  const expandToggle = index => {
+    if (showGrades === index) {
+      return setShowGrades(null);
     }
+
+    setShowGrades(index);
   };
 
   // Search filter by first & last name
@@ -39,6 +36,26 @@ const StudentProvider = ({ children }) => {
     );
   };
 
+  // Add tags
+
+  const onKeyDown = (e) => {
+    const { key } = e;
+    const trimmedInputTag = inputTag.trim();
+
+    if (key === "Enter") {
+      e.preventDefault();
+      setTags((prevState) => [...prevState, trimmedInputTag]);
+      // addTags(tags);
+      setInputTag("");
+    }
+  };
+
+  // const addTags = (str) => {
+  //   const tagForStudentsList = [...studentsList];
+  //   tagForStudentsList.tags.push(str);
+  //   setStudentsList(tagForStudentsList);
+  // };
+
   // API call
 
   const url = "https://api.hatchways.io/assessment/students";
@@ -46,7 +63,15 @@ const StudentProvider = ({ children }) => {
   useEffect(() => {
     axios(url)
       .then((response) => {
-        setStudentsList(response.data.students);
+        let newStudentList = [];
+        // eslint-disable-next-line
+        response.data.students.map(student => {
+          let addTags = student;
+          addTags.tags = [];
+          newStudentList.push(addTags);
+        });
+        // console.log(newStudentList)
+        setStudentsList(newStudentList);
       })
       .catch((err) => {
         console.log(err);
@@ -71,6 +96,7 @@ const StudentProvider = ({ children }) => {
     studentsList,
     setStudentsList,
     searchName,
+    // addTags
   };
 
   return (

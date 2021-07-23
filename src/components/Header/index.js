@@ -8,7 +8,7 @@ const Header = () => {
     useContext(StudentContext);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <Container>
       <SearchInput
         type="text"
         placeholder="Search by name"
@@ -21,9 +21,14 @@ const Header = () => {
         value={searchTags}
         onChange={(e) => setSearchTags(e.target.value)}
       />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const SearchInput = styled.input`
   border: none;

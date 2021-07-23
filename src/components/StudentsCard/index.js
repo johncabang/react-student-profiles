@@ -22,7 +22,7 @@ const StudentsCard = () => {
   return (
     <Container>
       <Header />
-      {searchName(studentsList).map((student) => {
+      {searchName(studentsList).map((student, index) => {
         return (
           <StudentCardWrapper key={student.id}>
             <StudentImage src={student.pic} alt="student pic" />
@@ -31,16 +31,14 @@ const StudentsCard = () => {
                 <h1>
                   {student.firstName} {student.lastName}
                 </h1>
-                {/* {console.log(student.id)} */}
-                <ExpandButton onClick={expandToggle}>
-                  {!showGrades ? <FaPlus /> : <FaMinus />}
+                <ExpandButton onClick={() => expandToggle(index)}>
+                  {showGrades === index ? <FaMinus /> : <FaPlus />}
                 </ExpandButton>
               </StudentHeader>
               <StudentBody>
                 <p>Email: {student.email}</p>
                 <p>Company: {student.company}</p>
                 <p>Skill: {student.skill}</p>
-                {/* {console.log(student.grades)} */}
                 <p>
                   Average:{" "}
                   {student.grades
@@ -48,8 +46,7 @@ const StudentsCard = () => {
                     .reduce((a, b) => a + b, 0) / student.grades.length}
                   %
                 </p>
-                {/* {console.log(student.grades)} */}
-                {showGrades && (
+                {showGrades === index && (
                   <GradesWrapper>
                     {student.grades.map((grade, index) => (
                       <p key={index}>
