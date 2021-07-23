@@ -18,16 +18,8 @@ const StudentsCard = ({ studentsList }) => {
     // setShowGrades,
     expandToggle,
     onKeyDown,
+    searchName,
   } = useContext(StudentContext);
-
-  function search(rows) {
-    return rows.filter(({ firstName, lastName }) =>
-      [firstName, lastName].some(
-        (name) =>
-          name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-      )
-    );
-  }
 
   return (
     <Container>
@@ -43,7 +35,7 @@ const StudentsCard = ({ studentsList }) => {
         value={searchTags}
         onChange={(e) => setSearchTags(e.target.value)}
       />
-      {search(studentsList).map((student) => {
+      {searchName(studentsList).map((student) => {
         return (
           <StudentWrapper key={student.id}>
             <StudentImage src={student.pic} alt="student pic" />

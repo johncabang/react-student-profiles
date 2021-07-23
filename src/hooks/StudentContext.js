@@ -26,6 +26,15 @@ const StudentProvider = ({ children }) => {
     }
   };
 
+  const searchName = (rows) => {
+    return rows.filter(({ firstName, lastName }) =>
+      [firstName, lastName].some(
+        (name) =>
+          name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+      )
+    );
+  };
+
   const url = "https://api.hatchways.io/assessment/students";
 
   const [studentsList, setStudentsList] = useState([]);
@@ -57,6 +66,7 @@ const StudentProvider = ({ children }) => {
     onKeyDown,
     studentsList,
     setStudentsList,
+    searchName,
   };
 
   return (
