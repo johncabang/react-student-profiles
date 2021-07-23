@@ -13,15 +13,10 @@ const StudentProvider = ({ children }) => {
 
   // Expand toggle to show grades
 
-  // const expandToggle = () => {
-  //   setShowGrades(!showGrades);
-  // };
-
   const expandToggle = index => {
     if (showGrades === index) {
       return setShowGrades(null);
     }
-
     setShowGrades(index);
   };
 
@@ -38,23 +33,11 @@ const StudentProvider = ({ children }) => {
 
   // Add tags
 
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInputTag = inputTag.trim();
-
-    if (key === "Enter") {
-      e.preventDefault();
-      setTags((prevState) => [...prevState, trimmedInputTag]);
-      // addTags(tags);
-      setInputTag("");
-    }
+  const addTags = (str, index) => {
+    const tagForStudentsList = [...studentsList];
+    tagForStudentsList[index].tags.push(str);
+    setStudentsList(tagForStudentsList);
   };
-
-  // const addTags = (str) => {
-  //   const tagForStudentsList = [...studentsList];
-  //   tagForStudentsList.tags.push(str);
-  //   setStudentsList(tagForStudentsList);
-  // };
 
   // API call
 
@@ -92,11 +75,10 @@ const StudentProvider = ({ children }) => {
     showGrades,
     setShowGrades,
     expandToggle,
-    onKeyDown,
     studentsList,
     setStudentsList,
     searchName,
-    // addTags
+    addTags
   };
 
   return (

@@ -8,15 +8,16 @@ import Header from "../Header";
 const StudentsCard = () => {
   const {
     tags,
-    // setTags,
+    setTags,
     inputTag,
     setInputTag,
     showGrades,
     // setShowGrades,
     expandToggle,
-    onKeyDown,
+    // onKeyDown,
     searchName,
     studentsList,
+    addTags
   } = useContext(StudentContext);
 
   return (
@@ -66,7 +67,16 @@ const StudentsCard = () => {
                   type="text"
                   placeholder="Add a tag"
                   value={inputTag}
-                  onKeyDown={onKeyDown}
+                  onKeyDown={(e) => {
+                    const { key } = e;
+                    const trimmedInputTag = inputTag.trim();
+                    if (key === "Enter") {
+                      e.preventDefault();
+                      setTags((prevState) => [...prevState, trimmedInputTag]);
+                      addTags(inputTag, index);
+                      setInputTag("");
+                    }
+                  }}
                   onChange={(e) => setInputTag(e.target.value)}
                 />
               </StudentBody>
@@ -74,6 +84,7 @@ const StudentsCard = () => {
           </StudentCardWrapper>
         );
       })}
+      {console.log(studentsList)}
     </Container>
   );
 };
