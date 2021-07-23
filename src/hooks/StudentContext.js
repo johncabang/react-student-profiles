@@ -1,24 +1,24 @@
-import React, { useState, useEffect, createContext } from "react";
-import axios from "axios";
+import React, { useState, useEffect, createContext } from 'react'
+import axios from 'axios'
 
-const StudentContext = createContext();
+const StudentContext = createContext()
 
 const StudentProvider = ({ children }) => {
-  const [studentsList, setStudentsList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchTags, setSearchTags] = useState("");
-  const [tags, setTags] = useState([]);
-  const [inputTag, setInputTag] = useState("");
-  const [showGrades, setShowGrades] = useState(false);
+  const [studentsList, setStudentsList] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTags, setSearchTags] = useState('')
+  const [tags, setTags] = useState([])
+  const [inputTag, setInputTag] = useState('')
+  const [showGrades, setShowGrades] = useState(false)
 
   // Expand toggle to show grades
 
-  const expandToggle = index => {
+  const expandToggle = (index) => {
     if (showGrades === index) {
-      return setShowGrades(null);
+      return setShowGrades(null)
     }
-    setShowGrades(index);
-  };
+    setShowGrades(index)
+  }
 
   // Search filter by first & last name
 
@@ -26,40 +26,40 @@ const StudentProvider = ({ children }) => {
     return rows.filter(({ firstName, lastName }) =>
       [firstName, lastName].some(
         (name) =>
-          name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-      )
-    );
-  };
+          name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
+      ),
+    )
+  }
 
   // Add tags
 
   const addTags = (str, index) => {
-    const tagForStudentsList = [...studentsList];
-    tagForStudentsList[index].tags.push(str);
-    setStudentsList(tagForStudentsList);
-  };
+    const tagForStudentsList = [...studentsList]
+    tagForStudentsList[index].tags.push(str)
+    setStudentsList(tagForStudentsList)
+  }
 
   // API call
 
-  const url = "https://api.hatchways.io/assessment/students";
+  const url = 'https://api.hatchways.io/assessment/students'
 
   useEffect(() => {
     axios(url)
       .then((response) => {
-        let newStudentList = [];
+        let newStudentList = []
         // eslint-disable-next-line
-        response.data.students.map(student => {
-          let addTags = student;
-          addTags.tags = [];
-          newStudentList.push(addTags);
-        });
+        response.data.students.map((student) => {
+          let addTags = student
+          addTags.tags = []
+          newStudentList.push(addTags)
+        })
         // console.log(newStudentList)
-        setStudentsList(newStudentList);
+        setStudentsList(newStudentList)
       })
       .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+        console.log(err)
+      })
+  }, [])
 
   // console.log(studentsList);
 
@@ -78,12 +78,12 @@ const StudentProvider = ({ children }) => {
     studentsList,
     setStudentsList,
     searchName,
-    addTags
-  };
+    addTags,
+  }
 
   return (
     <StudentContext.Provider value={value}>{children}</StudentContext.Provider>
-  );
-};
+  )
+}
 
-export { StudentContext, StudentProvider };
+export { StudentContext, StudentProvider }

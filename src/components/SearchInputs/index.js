@@ -3,19 +3,19 @@ import styled from "styled-components";
 
 import { StudentContext } from "../../hooks/StudentContext";
 
-const Header = () => {
+const SearchInput = () => {
   const { searchTerm, setSearchTerm, searchTags, setSearchTags } =
     useContext(StudentContext);
 
   return (
     <Container>
-      <SearchInput
+      <SearchNamesInput
         type="text"
         placeholder="Search by name"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <SearchTags
+      <SearchTagsInput
         type="text"
         placeholder="Search by tag"
         value={searchTags}
@@ -30,7 +30,8 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const SearchInput = styled.input`
+const SearchNamesInput
+ = styled.input`
   border: none;
   outline: none;
   margin: 1rem 1rem 0rem 1rem;
@@ -39,7 +40,7 @@ const SearchInput = styled.input`
   border-bottom: #b7b7b7 solid 1px;
 `;
 
-const SearchTags = styled.input`
+const SearchTagsInput = styled.input`
   border: none;
   outline: none;
   margin: 1rem 1rem 2rem 1rem;
@@ -48,4 +49,4 @@ const SearchTags = styled.input`
   border-bottom: #b7b7b7 solid 1px;
 `;
 
-export default Header;
+export default SearchInput;
