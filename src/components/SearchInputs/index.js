@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
-import { StudentContext } from '../../hooks/StudentContext'
+import { StudentContext } from '../../context/StudentContext'
 
 const SearchInput = () => {
-  const { searchTerm, setSearchTerm, searchTags, setSearchTags } = useContext(
+  const { searchName, setSearchName, searchTags, setSearchTags } = useContext(
     StudentContext,
   )
 
@@ -13,8 +13,8 @@ const SearchInput = () => {
       <SearchNamesInput
         type="text"
         placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchName}
+        onChange={(e) => setSearchName(e.target.value)}
       />
       <SearchTagsInput
         type="text"

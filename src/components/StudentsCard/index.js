@@ -2,19 +2,19 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
-import { StudentContext } from '../../hooks/StudentContext'
+import { StudentContext } from '../../context/StudentContext'
 import SearchInputs from '../SearchInputs'
 import Tags from '../Tags'
 
 const StudentsCard = () => {
-  const { showGrades, expandToggle, searchName, studentsList } = useContext(
+  const { showGrades, expandToggle, filterName, studentsList } = useContext(
     StudentContext,
   )
 
   return (
     <Container>
       <SearchInputs />
-      {searchName(studentsList).map((student, index) => {
+      {filterName(studentsList).map((student, index) => {
         return (
           <Wrapper key={student.id}>
             <Avatar src={student.pic} alt="student pic" />

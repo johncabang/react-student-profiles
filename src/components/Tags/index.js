@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 
-import { StudentContext } from '../../hooks/StudentContext'
+import { StudentContext } from '../../context/StudentContext'
 
 const Tags = ({ index, tags }) => {
-  const { setTags, addTags } = useContext(StudentContext)
+  const { setTags, addTag } = useContext(StudentContext)
   const [inputTag, setInputTag] = useState('')
 
   const onKeyDown = (e) => {
@@ -13,7 +13,7 @@ const Tags = ({ index, tags }) => {
     if (key === 'Enter') {
       e.preventDefault()
       setTags((prevState) => [...prevState, trimmedInputTag])
-      addTags(inputTag, index)
+      addTag(inputTag, index)
       setInputTag('')
     }
   }

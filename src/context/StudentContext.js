@@ -5,10 +5,9 @@ const StudentContext = createContext()
 
 const StudentProvider = ({ children }) => {
   const [studentsList, setStudentsList] = useState([])
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchName, setSearchName] = useState('')
   const [searchTags, setSearchTags] = useState('')
   const [tags, setTags] = useState([])
-  // const [inputTag, setInputTag] = useState('')
   const [showGrades, setShowGrades] = useState(false)
 
   // Expand toggle to show grades
@@ -22,20 +21,20 @@ const StudentProvider = ({ children }) => {
 
   // Search filter by first & last name
 
-  const searchName = (arr) => {
+  const filterName = (arr) => {
     return arr.filter(({ firstName, lastName, tags }) =>
       [firstName, lastName, tags].some(
         (name) =>
-          name.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
+          name.toString().toLowerCase().indexOf(searchName.toLowerCase()) > -1,
       ),
     )
   }
 
   // Search filter by tags - TODOS
 
-  // Add tags
+  // Add tag
 
-  const addTags = (str, index) => {
+  const addTag = (str, index) => {
     const tagForStudentsList = [...studentsList]
     tagForStudentsList[index].tags.push(str)
     setStudentsList(tagForStudentsList)
@@ -49,11 +48,10 @@ const StudentProvider = ({ children }) => {
     axios(url)
       .then((response) => {
         let newStudentList = []
-        // eslint-disable-next-line
-        response.data.students.map((student) => {
-          let addTags = student
-          addTags.tags = []
-          newStudentList.push(addTags)
+        response.data.students.forEach((student) => {
+          let addTag = student
+          addTag.tags = []
+          newStudentList.push(addTag)
         })
         setStudentsList(newStudentList)
       })
@@ -63,21 +61,19 @@ const StudentProvider = ({ children }) => {
   }, [])
 
   const value = {
-    searchTerm,
-    setSearchTerm,
+    searchName,
+    setSearchName,
     searchTags,
     setSearchTags,
     tags,
     setTags,
-    // inputTag,
-    // setInputTag,
     showGrades,
     setShowGrades,
     expandToggle,
     studentsList,
     setStudentsList,
-    searchName,
-    addTags,
+    filterName,
+    addTag,
   }
 
   return (
