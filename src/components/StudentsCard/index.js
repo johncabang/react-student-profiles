@@ -7,14 +7,19 @@ import SearchInputs from '../SearchInputs'
 import Tags from '../Tags'
 
 const StudentsCard = () => {
-  const { showGrades, expandToggle, filterName, studentsList } = useContext(
-    StudentContext,
-  )
+  const {
+    showGrades,
+    expandToggle,
+    filterName,
+    // studentsList,
+    // filterNameByTag,
+    filteredStudentsList,
+  } = useContext(StudentContext)
 
   return (
     <Container>
       <SearchInputs />
-      {filterName(studentsList).map((student, index) => {
+      {filterName(filteredStudentsList).map((student, index) => {
         return (
           <Wrapper key={student.id}>
             <Avatar src={student.pic} alt="student pic" />
@@ -53,7 +58,6 @@ const StudentsCard = () => {
           </Wrapper>
         )
       })}
-      {/* {console.log(studentsList)} */}
     </Container>
   )
 }

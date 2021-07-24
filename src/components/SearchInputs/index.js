@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { StudentContext } from '../../context/StudentContext'
 
 const SearchInput = () => {
-  const { searchName, setSearchName, searchTags, setSearchTags } = useContext(
+  const { searchName, setSearchName, searchTags, filterNameByTag } = useContext(
     StudentContext,
   )
 
@@ -20,7 +20,7 @@ const SearchInput = () => {
         type="text"
         placeholder="Search by tag"
         value={searchTags}
-        onChange={(e) => setSearchTags(e.target.value)}
+        onChange={filterNameByTag}
       />
     </Container>
   )

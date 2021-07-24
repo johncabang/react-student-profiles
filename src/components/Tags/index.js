@@ -13,7 +13,7 @@ const Tags = ({ index, tags }) => {
     if (key === 'Enter') {
       e.preventDefault()
       setTags((prevState) => [...prevState, trimmedInputTag])
-      addTag(inputTag, index)
+      addTag(inputTag.toLowerCase(), index)
       setInputTag('')
     }
   }
