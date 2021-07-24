@@ -26,7 +26,10 @@ const StudentProvider = ({ children }) => {
     return arr.filter(({ firstName, lastName }) =>
       [firstName, lastName].some(
         (name) =>
-          name.toString().toLowerCase().indexOf(searchName.toLowerCase()) > -1,
+          name
+            .toString()
+            .toLowerCase()
+            .indexOf(searchName.toLowerCase().trim()) > -1,
       ),
     )
   }
@@ -34,22 +37,36 @@ const StudentProvider = ({ children }) => {
   // Search filter by tags - TODOS
 
   const filterNameByTag = (event) => {
-    let result = []
-    setSearchTags(event.target.value)
+    setSearchTags(event.trim())
 
-    if (searchTags === '') {
-      setFilteredStudentsList(studentsList)
-    } else {
-      result = studentsList.filter(({ tags }) =>
-        [tags].some(
-          (tag) =>
-            tag.toString().toLowerCase().includes(searchTags.toLowerCase()) >
-            -1,
-        ),
-      )
-      setFilteredStudentsList(result)
-    }
+    let results = []
+    results = studentsList.filter(({ tags }) =>
+      [tags].some(
+        (tag) =>
+          tag
+            .toString()
+            .toLowerCase()
+            .indexOf(searchTags.toLowerCase().trim()) > -1,
+      ),
+    )
+
+    setFilteredStudentsList(results)
   }
+
+  // const filterNameByTag = (event) => {
+  //   setSearchTags(event)
+
+  //   let results = []
+  //   results = studentsList.filter((student) => {
+  //     return (
+  //       student
+  //         .toString()
+  //         .toLowerCase()
+  //         .includes(searchTags.toLowerCase().trim()),
+  //       setFilteredStudentsList(results)
+  //     )
+  //   })
+  // }
 
   // Add tag
 

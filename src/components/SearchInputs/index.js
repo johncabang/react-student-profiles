@@ -20,7 +20,7 @@ const SearchInput = () => {
         type="text"
         placeholder="Search by tag"
         value={searchTags}
-        onChange={filterNameByTag}
+        onChange={(e) => filterNameByTag(e.target.value)}
       />
     </Container>
   )
