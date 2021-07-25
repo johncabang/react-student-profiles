@@ -10,7 +10,7 @@ const StudentsCard = () => {
   const {
     showGrades,
     expandToggle,
-    filterName,
+    // filterName,
     // studentsList,
     // filterNameByTag,
     filteredStudentsList,
@@ -19,7 +19,7 @@ const StudentsCard = () => {
   return (
     <Container>
       <SearchInputs />
-      {filterName(filteredStudentsList).map((student, index) => {
+      {filteredStudentsList.map((student, index) => {
         return (
           <Wrapper key={student.id}>
             <Avatar src={student.pic} alt="student pic" />
