@@ -32,12 +32,12 @@ h1 {
     transition: ease-in 0.5s;
     font-size: 2rem;
   }
-}
 
-h4 {
-  font-size: 1.5rem;
-  font-weight: normal;
-  color: #b7b7b7;
+  @media screen and (max-width: 414px) {
+    font-size: 1.5rem;
+    text-align: center;
+
+  }
 }
 
 `

@@ -70,12 +70,19 @@ const Container = styled.div`
   @media screen and (max-width: 1024px) {
     width: 90%;
     height: 90%;
+    transition: ease-in 0.5s;
   }
 `
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 414px) {
+    flex-direction: column;
+    justify-content: center;
+    transition: ease-in 0.5s;
+  }
 `
 
 const ExpandGrades = styled.div`
@@ -84,6 +91,15 @@ const ExpandGrades = styled.div`
   color: #b7b7b7;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 414px) {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem 0rem;
+    transition: ease-in 0.5s;
+  }
 `
 
 const GradesWrapper = styled.div`
@@ -96,6 +112,13 @@ const Wrapper = styled.div`
   display: flex;
   border-bottom: #b7b7b7 solid 1px;
   padding: 1.5rem;
+
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    transition: ease-in 0.5s;
+  }
 `
 
 const Avatar = styled.img`
@@ -108,6 +131,14 @@ const Avatar = styled.img`
   &:hover {
     transform: scale(1.1);
   }
+
+  @media screen and (max-width: 414px) {
+    display: flex;
+    justify-content: center;
+    transition: ease-in 0.5s;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
 `
 
 const Card = styled.div`
@@ -115,6 +146,11 @@ const Card = styled.div`
   flex-direction: column;
   margin-left: 2rem;
   width: 100%;
+
+  @media screen and (max-width: 414px) {
+    margin: 0;
+    transition: ease-in 0.5s;
+  }
 `
 
 const Body = styled.div`
