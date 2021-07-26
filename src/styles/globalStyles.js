@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
 
@@ -9,15 +9,11 @@ const GlobalStyles = createGlobalStyle`
   color: #000;
   max-width: 1440px;
   font-family: 'Raleway', sans-serif;
-  /* margin: 0 auto; */
 }
 
 body { 
   background-color: #ededed;
   height: 100vh;
-}
-
-p {
 }
 
 h1 {
@@ -31,6 +27,6 @@ h4 {
   color: #b7b7b7;
 }
 
-`;
+`
 
-export default GlobalStyles;
+export default GlobalStyles

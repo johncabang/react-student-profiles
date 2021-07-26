@@ -7,14 +7,14 @@ const Tags = ({ index, tags }) => {
   const { setTags, addTag } = useContext(StudentContext)
   const [inputTag, setInputTag] = useState('')
 
-  const onKeyDown = (e) => {
+  const onKeyDown = (event) => {
     const trimmedInputTag = inputTag.trim()
     if (
-      e.key === 'Enter' &&
-      e.target.value.trim() !== '' &&
-      !tags.includes(e.target.value.trim())
+      event.key === 'Enter' &&
+      event.target.value.trim() !== '' &&
+      !tags.includes(event.target.value.trim())
     ) {
-      e.preventDefault()
+      event.preventDefault()
       setTags((prevState) => [...prevState, trimmedInputTag])
       addTag(inputTag.toLowerCase().trim(), index)
       setInputTag('')
@@ -35,7 +35,7 @@ const Tags = ({ index, tags }) => {
         placeholder="Add a tag"
         value={inputTag}
         onKeyDown={onKeyDown}
-        onChange={(e) => setInputTag(e.target.value)}
+        onChange={(event) => setInputTag(event.target.value)}
       />
     </>
   )

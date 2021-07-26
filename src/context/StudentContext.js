@@ -51,7 +51,7 @@ const StudentProvider = ({ children }) => {
     )
   }
 
-  // Search filter by tags
+  // Search filter by tags - TODOS - FIX state render
 
   const filterNameByTag = (event) => {
     setSearchTags(event.target.value)
