@@ -1,11 +1,23 @@
-# Frontend Assessment - Student Profiles
+# Hatchways.io Frontend Assessment - Student Profiles
 
 ### Features
 
-- A user can filter the list of students by their first and last name.
+- A user can filter the list of students by their name (including full name)
 - A user can search for students based on tags.
 - A user can add tags to the each student.
-- Each student have an expandable list view, so that all of their test scores may be viewed by clicking expand button located upper-right corner.
+- Each student have an expandable list view(toggle button), so that all of their test scores may be viewed.
+
+
+ - A user can add tags for a specific student.
+
+You will then add another search bar to search for students based on tags.
+A strong submission will have this functionality:
+  ● If a name is entered in the search by name input, and a tag is entered in the
+  search by tag input, results that include both the name and tag should be shown.
+
+
+
+
 
 ## Installation
 
@@ -27,7 +39,14 @@ Javascript
 
 ### Frameworks/Technologies
 
-React
+* React
+    * Context API
+    * useState
+    * useEffect
+    * useMemo
+* Styled-components
+* Axios
+
 
 ### API used
 
