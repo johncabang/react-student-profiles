@@ -9,7 +9,11 @@ const Tags = ({ index, tags }) => {
 
   const onKeyDown = (e) => {
     const trimmedInputTag = inputTag.trim()
-    if (e.key === 'Enter' && e.target.value.trim() !== '') {
+    if (
+      e.key === 'Enter' &&
+      e.target.value.trim() !== '' &&
+      !tags.includes(e.target.value.trim())
+    ) {
       e.preventDefault()
       setTags((prevState) => [...prevState, trimmedInputTag])
       addTag(inputTag.toLowerCase().trim(), index)
