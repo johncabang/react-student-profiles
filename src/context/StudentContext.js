@@ -16,29 +16,26 @@ const StudentProvider = ({ children }) => {
   const url = 'https://api.hatchways.io/assessment/students'
 
   const fetchData = async () => {
-    const request = await axios(url)
-    let newStudentList = []
-    request.data.students.forEach((student) => {
-      let addTag = student
-      addTag.tags = []
-      newStudentList.push(addTag)
-    })
-    setStudentsList(newStudentList)
-    setFilteredStudentsList(newStudentList)
+    try {
+      const request = await axios(url)
+      let newStudentList = []
+      request.data.students.forEach((student) => {
+        let addTag = student
+        addTag.tags = []
+        newStudentList.push(addTag)
+      })
+      setStudentsList(newStudentList)
+      setFilteredStudentsList(newStudentList)
+    } catch (error) {
+      console.log('error', error)
+      // console.log(error.response.data)
+      // console.log(error.response.status)
+    }
   }
 
   useEffect(() => {
     fetchData()
   }, [])
-
-  // Expand toggle to show grades
-
-  const expandToggle = (index) => {
-    if (showGrades === index) {
-      return setShowGrades(null)
-    }
-    setShowGrades(index)
-  }
 
   // Search filter by first & last name
 
@@ -54,6 +51,27 @@ const StudentProvider = ({ children }) => {
     )
   }
 
+  // Search filter by tags
+
+  const filterNameByTag = (event) => {
+    setSearchTags(event.target.value)
+    const results = studentsList.filter((item) => {
+      return (
+        item.tags
+          .toString()
+          .toLowerCase()
+          .indexOf(searchTags.toLowerCase().trim()) > -1
+      )
+    })
+    setFilteredStudentsList(results)
+    console.log(filteredStudentsList)
+    // console.log(searchTags)
+  }
+
+  // useEffect(() => {
+  //   console.log(searchTags)
+  // }, [searchTags])
+
   // Add tag
 
   const addTag = (str, index) => {
@@ -62,23 +80,32 @@ const StudentProvider = ({ children }) => {
     setStudentsList(tagForStudentsList)
   }
 
+  // Expand toggle to show grades
+
+  const expandToggle = (index) => {
+    if (showGrades === index) {
+      return setShowGrades(null)
+    }
+    setShowGrades(index)
+  }
+
   const value = {
+    studentsList,
+    setStudentsList,
+    filteredStudentsList,
+    setFilteredStudentsList,
     searchName,
     setSearchName,
     searchTags,
     setSearchTags,
-    tags,
-    setTags,
     showGrades,
     setShowGrades,
+    tags,
+    setTags,
     expandToggle,
-    studentsList,
-    setStudentsList,
-    filterName,
     addTag,
-    // filterNameByTag,
-    filteredStudentsList,
-    setFilteredStudentsList,
+    filterName,
+    filterNameByTag,
   }
 
   return (

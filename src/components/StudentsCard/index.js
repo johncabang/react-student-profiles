@@ -11,8 +11,6 @@ const StudentsCard = () => {
     showGrades,
     expandToggle,
     filterName,
-    // studentsList,
-    // filterNameByTag,
     filteredStudentsList,
   } = useContext(StudentContext)
 
