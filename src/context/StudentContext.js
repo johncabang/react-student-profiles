@@ -15,44 +15,19 @@ const StudentProvider = ({ children }) => {
 
   const url = 'https://api.hatchways.io/assessment/students'
 
-  // const fetchData = async () => {
-  //   axios(url)
-  //     .then((response) => {
-  //       let newStudentList = []
-  //       response.data.students.forEach((student) => {
-  //         let addTag = student
-  //         addTag.tags = []
-  //         newStudentList.push(addTag)
-  //       })
-  //       setStudentsList(newStudentList)
-  //       setFilteredStudentsList(newStudentList)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  const fetchData = async () => {
+    const request = await axios(url)
+    let newStudentList = []
+    request.data.students.forEach((student) => {
+      let addTag = student
+      addTag.tags = []
+      newStudentList.push(addTag)
+    })
+    setStudentsList(newStudentList)
+    setFilteredStudentsList(newStudentList)
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios(url)
-      // .then((response) => {
-      let newStudentList = []
-      request.data.students.forEach((student) => {
-        let addTag = student
-        addTag.tags = []
-        newStudentList.push(addTag)
-      })
-      setStudentsList(newStudentList)
-      setFilteredStudentsList(newStudentList)
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
-    }
     fetchData()
   }, [])
 

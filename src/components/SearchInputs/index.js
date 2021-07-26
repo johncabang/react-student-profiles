@@ -17,7 +17,6 @@ const SearchInput = () => {
 
   const filterNameByTag = (event) => {
     setSearchTags(event.target.value)
-    if (searchTags === '') setFilteredStudentsList(studentsList)
     const results = studentsList.filter((item) => {
       return (
         item.tags
