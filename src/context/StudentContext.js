@@ -1,11 +1,11 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext, useMemo } from 'react'
 import axios from 'axios'
 
 const StudentContext = createContext()
 
 const StudentProvider = ({ children }) => {
   const [studentsList, setStudentsList] = useState([])
-  const [filteredStudentsList, setFilteredStudentsList] = useState([])
+  const [updatedStudentsList, setUpdatedStudentsList] = useState([])
   const [searchName, setSearchName] = useState('')
   const [searchTags, setSearchTags] = useState('')
   const [tags, setTags] = useState([])
@@ -25,7 +25,7 @@ const StudentProvider = ({ children }) => {
         newStudentList.push(addTag)
       })
       setStudentsList(newStudentList)
-      setFilteredStudentsList(newStudentList)
+      setUpdatedStudentsList(newStudentList)
     } catch (error) {
       console.log('error', error)
       // console.log(error.response.data)
@@ -51,26 +51,17 @@ const StudentProvider = ({ children }) => {
     )
   }
 
-  // Search filter by tags - TODOS - FIX state render
+  // Search filter by tags
 
-  const filterNameByTag = (event) => {
-    setSearchTags(event.target.value)
-    const results = studentsList.filter((item) => {
-      return (
-        item.tags
-          .toString()
-          .toLowerCase()
-          .indexOf(searchTags.toLowerCase().trim()) > -1
-      )
+  const filteredStudents = useMemo(() => {
+    if (!searchTags) return updatedStudentsList
+    return updatedStudentsList.filter((item) => {
+      return item.tags
+        .toString()
+        .toLowerCase()
+        .includes(searchTags.toLowerCase().trim())
     })
-    setFilteredStudentsList(results)
-    console.log(filteredStudentsList)
-    // console.log(searchTags)
-  }
-
-  // useEffect(() => {
-  //   console.log(searchTags)
-  // }, [searchTags])
+  }, [searchTags, updatedStudentsList])
 
   // Add tag
 
@@ -92,8 +83,6 @@ const StudentProvider = ({ children }) => {
   const value = {
     studentsList,
     setStudentsList,
-    filteredStudentsList,
-    setFilteredStudentsList,
     searchName,
     setSearchName,
     searchTags,
@@ -105,7 +94,7 @@ const StudentProvider = ({ children }) => {
     expandToggle,
     addTag,
     filterName,
-    filterNameByTag,
+    filteredStudents,
   }
 
   return (
