@@ -39,7 +39,7 @@ const StudentProvider = ({ children }) => {
 
   const filterName = (arr) => {
     return arr.filter(({ firstName, lastName }) =>
-      [firstName, lastName].some(
+      [firstName, lastName, `${firstName} ${lastName}`].some(
         (name) =>
           name
             .toString()
