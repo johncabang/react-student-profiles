@@ -66,6 +66,11 @@ const Container = styled.div`
   border: 0rem 1.5rem;
   border-radius: 0.7rem;
   overflow-y: auto;
+
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+    height: 90%;
+  }
 `
 
 const Header = styled.div`
@@ -98,6 +103,11 @@ const Avatar = styled.img`
   width: 120px;
   height: 120px;
   border: #b7b7b7 solid 1px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `
 
 const Card = styled.div`

@@ -53,6 +53,15 @@ const Tag = styled.div`
   border: none;
   padding: 0.5rem 0.8rem;
   margin: 0.2rem 0.8rem 0rem 0rem;
+
+  &:hover {
+    background-color: darkgray;
+    transition: ease-in 0.5s;
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
 `
 
 const TagInput = styled.input`
@@ -63,6 +72,12 @@ const TagInput = styled.input`
   margin-top: 0.5rem;
   padding: 0.5rem 0.5rem 0.5rem 0rem;
   width: 40%;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    font-size: 0.8rem;
+    transition: ease-in 0.5s;
+  }
 `
 
 export default Tags

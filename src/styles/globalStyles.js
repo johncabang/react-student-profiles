@@ -11,6 +11,13 @@ const GlobalStyles = createGlobalStyle`
   font-family: 'Raleway', sans-serif;
 }
 
+p {
+  @media screen and (max-width: 1024px) {
+    transition: ease-in 0.5s;
+    font-size: 0.8rem;
+  }
+}
+
 body { 
   background-color: #ededed;
   height: 100vh;
@@ -19,6 +26,12 @@ body {
 h1 {
   font-size: 3rem;
   text-transform: uppercase;
+  transition: ease-in 0.5s;
+
+  @media screen and (max-width: 1024px) {
+    transition: ease-in 0.5s;
+    font-size: 2rem;
+  }
 }
 
 h4 {

@@ -28,8 +28,6 @@ const StudentProvider = ({ children }) => {
       setUpdatedStudentsList(newStudentList)
     } catch (error) {
       console.log('error', error)
-      // console.log(error.response.data)
-      // console.log(error.response.status)
     }
   }
 
