@@ -15,21 +15,45 @@ const StudentProvider = ({ children }) => {
 
   const url = 'https://api.hatchways.io/assessment/students'
 
+  // const fetchData = async () => {
+  //   axios(url)
+  //     .then((response) => {
+  //       let newStudentList = []
+  //       response.data.students.forEach((student) => {
+  //         let addTag = student
+  //         addTag.tags = []
+  //         newStudentList.push(addTag)
+  //       })
+  //       setStudentsList(newStudentList)
+  //       setFilteredStudentsList(newStudentList)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
+
   useEffect(() => {
-    axios(url)
-      .then((response) => {
-        let newStudentList = []
-        response.data.students.forEach((student) => {
-          let addTag = student
-          addTag.tags = []
-          newStudentList.push(addTag)
-        })
-        setStudentsList(newStudentList)
-        setFilteredStudentsList(newStudentList)
+    async function fetchData() {
+      const request = await axios(url)
+      // .then((response) => {
+      let newStudentList = []
+      request.data.students.forEach((student) => {
+        let addTag = student
+        addTag.tags = []
+        newStudentList.push(addTag)
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      setStudentsList(newStudentList)
+      setFilteredStudentsList(newStudentList)
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+    }
+    fetchData()
   }, [])
 
   // Expand toggle to show grades
@@ -55,46 +79,73 @@ const StudentProvider = ({ children }) => {
   //   )
   // }
 
-  const filterName = (event) => {
-    setSearchName(event.target.value)
-
-    let results = []
-    // if (!searchName) {
-    //   setFilteredStudentsList(studentsList)
-    //   console.log('This is !searchName ' + filteredStudentsList)
-    // } else {
-    results = studentsList.filter((item) => {
-      return (
-        item.firstName
-          .toString()
-          .toLowerCase()
-          .indexOf(searchName.toLowerCase().trim()) > -1 ||
-        item.lastName
-          .toString()
-          .toLowerCase()
-          .indexOf(searchName.toLowerCase().trim()) > -1
-      )
-    })
-    setFilteredStudentsList(results)
-    console.log(filteredStudentsList)
-    // }
+  const filterName = (arr) => {
+    return arr.filter(({ firstName, lastName }) =>
+      [firstName, lastName].some(
+        (name) =>
+          name
+            .toString()
+            .toLowerCase()
+            .indexOf(searchName.toLowerCase().trim()) > -1,
+      ),
+    )
   }
+
+  // const filterName = (event) => {
+  //   // setSearchName(event.target.value)
+
+  //   let results = []
+  //   results = studentsList.filter((item) => {
+  //     return (
+  //       item.firstName
+  //         .toString()
+  //         .toLowerCase()
+  //         .indexOf(searchName.toLowerCase().trim()) > -1 ||
+  //       item.lastName
+  //         .toString()
+  //         .toLowerCase()
+  //         .indexOf(searchName.toLowerCase().trim()) > -1
+  //     )
+  //   })
+  //   setFilteredStudentsList(results)
+  //   console.log(filteredStudentsList)
+  // }
 
   // Search filter by tags - TODOS
 
-  const filterNameByTag = (event) => {
-    setSearchTags(event.target.value)
+  // const filterNameByTag = (event) => {
+  //   setSearchTags(event.target.value)
 
-    let results = []
-    results = studentsList.filter((item) => {
-      return item.tags
-        .toString()
-        .toLowerCase()
-        .includes(searchTags.toLowerCase().trim())
-    })
-    setFilteredStudentsList(results)
-    console.log(filteredStudentsList)
-  }
+  // let results = []
+  // if (!searchTags.trim() === '') {
+  //   return setFilteredStudentsList(studentsList)
+  // } else {
+  //   results = studentsList.filter((item) => {
+  //     return item.tags
+  //       .toString()
+  //       .toLowerCase()
+  //       .trim()
+  //       .includes(searchTags.toLowerCase().trim())
+  //   })
+  //   setFilteredStudentsList(results)
+  //   console.log(filteredStudentsList)
+  // }
+
+  // const filterNameByTag = (event) => {
+  //   setSearchTags(event.target.value.toLowerCase().trim())
+  //   if (searchTags === '') {
+  //     return filteredStudentsList
+  //   }
+  //   const results = studentsList.filter((item) => {
+  //     return item.tags
+  //       .toString()
+  //       .toLowerCase()
+  //       .trim()
+  //       .includes(searchTags.toLowerCase().trim())
+  //   })
+  //   setFilteredStudentsList(results)
+  //   console.log(searchTags)
+  // }
 
   // const filterNameByTag = (event) => {
   //   setSearchTags(event.target.value)
@@ -167,8 +218,9 @@ const StudentProvider = ({ children }) => {
     setStudentsList,
     filterName,
     addTag,
-    filterNameByTag,
+    // filterNameByTag,
     filteredStudentsList,
+    setFilteredStudentsList,
   }
 
   return (

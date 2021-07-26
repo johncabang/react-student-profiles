@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import styled from 'styled-components'
 
 import { StudentContext } from '../../context/StudentContext'
@@ -6,11 +6,34 @@ import { StudentContext } from '../../context/StudentContext'
 const SearchInput = () => {
   const {
     searchName,
-    // setSearchName,
-    filterName,
+    setSearchName,
     searchTags,
-    filterNameByTag,
+    // filterNameByTag,
+    setSearchTags,
+    filteredStudentsList,
+    studentsList,
+    setFilteredStudentsList,
   } = useContext(StudentContext)
+
+  const filterNameByTag = (event) => {
+    setSearchTags(event.target.value)
+    if (searchTags === '') setFilteredStudentsList(studentsList)
+    const results = studentsList.filter((item) => {
+      return (
+        item.tags
+          .toString()
+          .toLowerCase()
+          .indexOf(searchTags.toLowerCase().trim()) > -1
+      )
+    })
+    setFilteredStudentsList(results)
+    console.log(filteredStudentsList)
+    // console.log(searchTags)
+  }
+
+  useEffect(() => {
+    console.log(searchTags)
+  }, [searchTags])
 
   return (
     <Container>
@@ -18,7 +41,7 @@ const SearchInput = () => {
         type="text"
         placeholder="Search by name"
         value={searchName}
-        onChange={filterName}
+        onChange={(e) => setSearchName(e.target.value)}
       />
       <SearchTagsInput
         type="text"
@@ -26,6 +49,7 @@ const SearchInput = () => {
         value={searchTags}
         onChange={filterNameByTag}
       />
+      {/* {console.log(searchTags)} */}
     </Container>
   )
 }
