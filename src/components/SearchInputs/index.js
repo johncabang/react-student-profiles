@@ -29,6 +29,8 @@ const SearchInput = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  /* position: fixed; */
+  z-index: 999;
 `
 
 const SearchNamesInput = styled.input`

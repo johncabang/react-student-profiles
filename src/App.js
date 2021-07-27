@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import StudentsCard from "./components/StudentsCard";
+import StudentsCard from './components/StudentsCard'
 
 function App() {
   return (
     <Container>
       <StudentsCard />
     </Container>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -17,6 +17,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column-reverse;
   height: 100vh;
-`;
+`
 
-export default App;
+export default App
