@@ -29,7 +29,9 @@ const SearchInput = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* position: fixed; */
+  position: sticky;
+  top: 0;
+  background-color: #fff;
   z-index: 999;
 `
 
