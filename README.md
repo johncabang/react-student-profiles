@@ -1,4 +1,4 @@
-# Hatchways.io Frontend Assessment - Student Profiles
+# Frontend Assessment - Student Profiles
 
 ### Features
 
